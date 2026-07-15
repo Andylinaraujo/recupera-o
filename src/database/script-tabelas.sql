@@ -1,7 +1,6 @@
 -- Arquivo de apoio, caso você queira criar tabelas como as aqui criadas para a API funcionar.
 -- Você precisa executar os comandos no banco de dados para criar as tabelas,
 -- ter este arquivo aqui não significa que a tabela em seu BD estará como abaixo!
-
 CREATE DATABASE livrariaRecuperacao20262;
 
 USE livrariaRecuperacao20262;
@@ -26,3 +25,9 @@ CREATE TABLE livro (
     CONSTRAINT fk_livro_autor FOREIGN KEY (fkAutor) REFERENCES autor(id),
     CONSTRAINT fk_livro_genero FOREIGN KEY (fkGenero) REFERENCES genero(id)
 );
+insert into genero (nome)values
+("horror"),
+("romance"),
+("aventura"),
+("história");
+select * from genero

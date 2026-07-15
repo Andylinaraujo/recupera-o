@@ -116,11 +116,14 @@
     }
 
     function cadastrar() {
-
         var corpo = {
             nome: form_postagem.nome.value
         }
-
+    for(let i = 0; i<corpo.lenght;i ++){
+        if(corpo[i].includes("@")){
+            alert("sem caracteres especiais ou numeros")
+        }
+        else{
         fetch(`/autores/cadastrar`, {
             method: "post",
             headers: {
@@ -145,9 +148,11 @@
             console.log(`#ERRO: ${resposta}`);
 
         });
+    
 
         return false;
-
+    }
+    }
     }
 
 

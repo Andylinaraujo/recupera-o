@@ -22,6 +22,7 @@ CREATE TABLE livro (
     fkGenero INT,
     precoCompra DOUBLE,
     precoVenda DOUBLE,
+    estoque int,
     CONSTRAINT fk_livro_autor FOREIGN KEY (fkAutor) REFERENCES autor(id),
     CONSTRAINT fk_livro_genero FOREIGN KEY (fkGenero) REFERENCES genero(id)
 );

@@ -114,6 +114,11 @@
                                 <br>
                                 <input name="precoVenda" id="precoVenda" maxlength="20" type="Text"></input>
                             </label>
+                            <label>
+                                Quantidade no Estoque:
+                                <br>
+                                <input name="estoquedebooks" id="estoquedebooks" maxlength="20" type="Text"></input>
+                            </label>
 
 
                             <button>Cadastrar</button>
@@ -139,14 +144,27 @@
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
     }
-
     function cadastrar() {
+        var genero = form_postagem.fkGenero_lista.value
+        var compras = form_postagem.precoCompra.value
+        var venda2 = form_postagem.precoVenda.value
+        var valorCalculado = 0
+        if (compras >= 100 && (genero == "1" || genero == "2")) {
+        valorCalculado = venda2 * 1.225;
+        } else if(compras >= 50 && (genero == "6" || genero == "1")) {
+        valorCalculado = venda2 * 1.25;
+        } else if(compras >= 50 && compras <= 100 && genero == "5"){
+        valorCalculado = venda2 * 1.275;
+        } else {
+        valorCalculado = venda2;
+        }
         var corpo = {
             titulo: form_postagem.titulo.value,
             fkGenero: form_postagem.fkGenero_lista.value,
             fkAutor: form_postagem.fkAutor_lista.value,
             precoCompra: form_postagem.precoCompra.value,
-            precoVenda: form_postagem.precoVenda.value
+            precoVenda: valorCalculado.toFixed(2),
+            estoque: form_postagem.estoquedebooks.value
         }
 
         fetch(`/livros/cadastrar`, {
